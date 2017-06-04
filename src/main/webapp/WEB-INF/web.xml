@@ -8,6 +8,10 @@
         <servlet-name>ServletListener</servlet-name>
         <servlet-class>servlet.ServletListener</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CancionServlet</servlet-name>
+        <servlet-class>servlet.CancionServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ArtistaServlet</servlet-name>
         <url-pattern>/ArtistaServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ServletListener</servlet-name>
         <url-pattern>/ServletListener</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancionServlet</servlet-name>
+        <url-pattern>/CancionServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
