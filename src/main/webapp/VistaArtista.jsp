@@ -22,8 +22,10 @@
                 <br>
                 Estilo:
                 <br>
-                <select>
-                    <option></option>
+                <select name="estilo">
+                        <option>ROCK</option>
+                        <option>FOLK</option>
+                        <option>POP</option>
                 </select>
                 <br>
                 <input type="submit">

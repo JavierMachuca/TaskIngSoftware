@@ -6,7 +6,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -52,9 +51,11 @@ public class ArtistaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String name = request.getParameter("nombre");
+        request.setAttribute("nombreArtista", name);
         
-        
-        processRequest(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("VistaCanciones.jsp");
+        rd.forward(request, response);
     }
 
     /**
@@ -75,7 +76,7 @@ public class ArtistaServlet extends HttpServlet {
         Artista artista = new Artista();
         
         artista.setNombre(nombre);
-        artista.setEstilo(Estilo.ELECTRONICA);
+        artista.setEstilo(Estilo.valueOf(estilo));
         
         this.lista.add(artista);
         

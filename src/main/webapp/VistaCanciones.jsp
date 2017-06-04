@@ -13,9 +13,13 @@
     </head>
     <body>
         
-        <h1>Artista</h1>
+        <h1>Canciones</h1>
         <fieldset>
-            
+            <br>
+                Nombre:
+                <br>
+                <input type="text" name="nombreArtista" disabled="true">
+                <br>
         </fieldset>
     </body>
 </html>

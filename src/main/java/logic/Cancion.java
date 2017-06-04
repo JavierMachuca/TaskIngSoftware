@@ -14,7 +14,9 @@ public class Cancion {
     private String nombreCancion;
     private int duracion;
 
-    public Cancion() {
+    public Cancion(String nombreCancion , int duracion) {
+        this.nombreCancion = nombreCancion;
+        this.duracion = duracion;
     }
 
     public String getNombreCancion() {

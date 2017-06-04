@@ -21,6 +21,10 @@ public class Artista {
     public Artista() {
         this.listCanciones = new ArrayList<>();
     }
+    
+    public void agregarCancion(String nombreCancion , int duracion){
+        this.listCanciones.add(new Cancion(nombreCancion, duracion));
+    }
 
     
     public String getNombre() {

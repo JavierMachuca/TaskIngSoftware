@@ -12,12 +12,6 @@ package logic;
  */
 public enum Estilo {
     ROCK,
-    ELECTRONICA,
     POP,
-    CUMBIA,
-    METAL,
-    CUECA,
-    LAMBADA,
-    MERENGUE,
-    SALSA
+    FOLK
 }

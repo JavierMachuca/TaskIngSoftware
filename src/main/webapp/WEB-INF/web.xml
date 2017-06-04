@@ -4,9 +4,17 @@
         <servlet-name>ArtistaServlet</servlet-name>
         <servlet-class>servlet.ArtistaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletListener</servlet-name>
+        <servlet-class>servlet.ServletListener</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ArtistaServlet</servlet-name>
         <url-pattern>/ArtistaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListener</servlet-name>
+        <url-pattern>/ServletListener</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
