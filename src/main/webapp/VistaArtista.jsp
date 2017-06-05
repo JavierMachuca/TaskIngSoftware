@@ -90,8 +90,9 @@
                         <td>${ contador.nombre }</td>
                         <td>${ contador.estilo }</td>
                         <td>
+                            <a href="ArtistaServlet?id=${ contador.id }&metodo=delete">Borrar</a>-
                             <a href="ArtistaServlet?id=${ contador.id }&metodo=edit">Editar</a>-
-                            <a href="ArtistaServlet?id=${ contador.id }&metodo=show ">Canciones</a>
+                            <a href="ArtistaServlet?id=${ contador.id }&metodo=show ">Canciones</a>-
                         </td>
                     </tr>
                 </c:forEach>

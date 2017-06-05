@@ -55,12 +55,22 @@ public class ArtistaServlet extends HttpServlet {
         String id = request.getParameter("id");
         
         if(metodo.equalsIgnoreCase("show")){
+            
             request.setAttribute("idArtista", id);
             RequestDispatcher rd = request.getRequestDispatcher("VistaCanciones.jsp");
             rd.forward(request, response);
+            
         }else if(metodo.equalsIgnoreCase("edit")){
             Artista artista = this.lista.get(Integer.parseInt(id)-1);
             request.setAttribute("artista", artista);
+            request.setAttribute("metodo",metodo);
+            request.setAttribute("listaArtista", this.lista); 
+            
+            RequestDispatcher rd = request.getRequestDispatcher("VistaArtista.jsp");
+            rd.forward(request, response);
+            
+        }else if(metodo.equalsIgnoreCase("delete")){
+            this.lista.remove(Integer.parseInt(id)-1);
             request.setAttribute("metodo",metodo);
             request.setAttribute("listaArtista", this.lista); 
             
@@ -88,7 +98,7 @@ public class ArtistaServlet extends HttpServlet {
         String btnAction = request.getParameter("btnAction");
         
         if(btnAction.equalsIgnoreCase("Actualizar")){
-            for (Artista artista : lista) {
+            for (Artista artista : this.lista) {
                 if(artista.getId() == Integer.parseInt(id)){
                     artista.setNombre(nombre);
                     artista.setEstilo(Estilo.valueOf(estilo));
@@ -97,12 +107,11 @@ public class ArtistaServlet extends HttpServlet {
         }else if(btnAction.equalsIgnoreCase("Guardar")){    
             //agrego id con el largo de la lista comenzando desde 1
             this.lista.add(new Artista(this.lista.size()+1,nombre, Estilo.valueOf(estilo)));
-   
         }
         
         request.setAttribute("listaArtista", this.lista); 
-            RequestDispatcher rd = request.getRequestDispatcher("VistaArtista.jsp");
-            rd.forward(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("VistaArtista.jsp");
+        rd.forward(request, response);
 
         
     }
