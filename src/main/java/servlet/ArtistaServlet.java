@@ -21,8 +21,10 @@ import logic.Estilo;
  */
 public class ArtistaServlet extends HttpServlet {
     
-    ArrayList<Artista> lista = new ArrayList<>();
-    Estilo estilo;
+    public static ArrayList<Artista> lista = new ArrayList<>();
+
+
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,8 +36,6 @@ public class ArtistaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -51,11 +51,23 @@ public class ArtistaServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String name = request.getParameter("nombre");
-        request.setAttribute("nombreArtista", name);
+        String metodo = request.getParameter("metodo");
+        String id = request.getParameter("id");
         
-        RequestDispatcher rd = request.getRequestDispatcher("VistaCanciones.jsp");
-        rd.forward(request, response);
+        if(metodo.equalsIgnoreCase("show")){
+            request.setAttribute("idArtista", id);
+            RequestDispatcher rd = request.getRequestDispatcher("VistaCanciones.jsp");
+            rd.forward(request, response);
+        }else if(metodo.equalsIgnoreCase("edit")){
+            Artista artista = this.lista.get(Integer.parseInt(id)-1);
+            request.setAttribute("artista", artista);
+            request.setAttribute("metodo",metodo);
+            request.setAttribute("listaArtista", this.lista); 
+            
+            RequestDispatcher rd = request.getRequestDispatcher("VistaArtista.jsp");
+            rd.forward(request, response);
+        }
+
     }
 
     /**
@@ -69,21 +81,29 @@ public class ArtistaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
-        String nombre = (String) request.getParameter("nombreArtista");
-        String estilo = (String) request.getParameter("estilo");
         
-        Artista artista = new Artista();
+        String nombre = request.getParameter("nombreArtista");
+        String id = request.getParameter("idArtista");
+        String estilo = request.getParameter("estilo");
+        String btnAction = request.getParameter("btnAction");
         
-        artista.setNombre(nombre);
-        artista.setEstilo(Estilo.valueOf(estilo));
+        if(btnAction.equalsIgnoreCase("Actualizar")){
+            for (Artista artista : lista) {
+                if(artista.getId() == Integer.parseInt(id)){
+                    artista.setNombre(nombre);
+                    artista.setEstilo(Estilo.valueOf(estilo));
+                }
+            } 
+        }else if(btnAction.equalsIgnoreCase("Guardar")){    
+            //agrego id con el largo de la lista comenzando desde 1
+            this.lista.add(new Artista(this.lista.size()+1,nombre, Estilo.valueOf(estilo)));
+   
+        }
         
-        this.lista.add(artista);
-        
-        request.setAttribute("listaArtista", this.lista);
-        
-        RequestDispatcher rd = request.getRequestDispatcher("VistaArtista.jsp");
-        rd.forward(request, response);
+        request.setAttribute("listaArtista", this.lista); 
+            RequestDispatcher rd = request.getRequestDispatcher("VistaArtista.jsp");
+            rd.forward(request, response);
+
         
     }
 

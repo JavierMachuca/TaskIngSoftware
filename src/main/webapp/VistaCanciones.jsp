@@ -19,15 +19,15 @@
                     <tbody>
                         <tr>
                             <td>Artista:</td>
-                            <td><input type="text" name="nombreArtista" disabled="true"></td>
+                            <td><input type="text" name="nombreArtista" disabled="true" value="${nombreArtista}"></td>
                         </tr>
                         <tr>
                             <td>Cancion:</td>
-                            <td><input type="text" name="nombreCancion"></td>
+                            <td><input type="text" name="nombreCancion" required></td>
                         </tr>
                         <tr>
                             <td>Duracion:</td>
-                            <td><input type="time" name="duracionCancion"></td>
+                            <td><input type="time" name="duracionCancion" required></td>
                         </tr>
                         <tr>
                             <td></td>
